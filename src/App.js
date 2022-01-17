@@ -1,11 +1,23 @@
 import "./styles.css";
-import Palette from "./Palette";
+import { Routes, Route, Navigate } from "react-router-dom";
+import PalettePage from "./PalettePage";
+import Home from "./Home";
+import NavBar from "./NavBar";
+import "bootstrap";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
   return (
     <div className="App">
-      <h1>Hi there!</h1>
-      <Palette />
+      <div>
+        <NavBar />
+      </div>
+      <Routes>
+        <Route path="*" element={<Home />} />
+        <Route path="/" element={<Navigate replace to="/home" />} />
+        <Route exact path="/home/" element={<Home />} />
+        <Route exact path="/palettepage/" element={<PalettePage />} />
+      </Routes>
     </div>
   );
 }

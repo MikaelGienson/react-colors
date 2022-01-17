@@ -1,4 +1,15 @@
-.App {
+.app-container {
+  display: flex;
   font-family: sans-serif;
-  text-align: center;
+  column-gap: 20px;
+  row-gap: 20px;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  margin: 0;
+  padding: 0;
+  text-align: left;
 }

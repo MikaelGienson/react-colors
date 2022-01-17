@@ -9,13 +9,14 @@
 
 .container {
   padding: 10px;
-  position: absolute;
   border: solid;
+  border-radius: 4%;
 }
 
 .container-text {
   display: flex;
   justify-content: space-between;
+
   margin-top: 6px;
-  maring-bottom: 0px;
+  margin-bottom: 0px;
 }

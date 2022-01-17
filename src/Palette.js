@@ -1,5 +1,6 @@
 import "./Palette.css";
 import { FaBeer } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Palette() {
   const palette = [
@@ -30,7 +31,7 @@ export default function Palette() {
   ));
 
   return (
-    <div>
+    <Link exact to="/palettepage">
       <div className="container">
         <div className="Palette">{colorBoxes}</div>
         <div className="container-text">
@@ -40,7 +41,6 @@ export default function Palette() {
           </i>
         </div>
       </div>
-      ;
-    </div>
+    </Link>
   );
 }
