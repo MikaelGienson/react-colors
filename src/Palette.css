@@ -1,0 +1,21 @@
+.Palette {
+  width: 250px;
+  height: 200px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 0;
+}
+
+.container {
+  padding: 10px;
+  position: absolute;
+  border: solid;
+}
+
+.container-text {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  maring-bottom: 0px;
+}
