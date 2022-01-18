@@ -1,9 +1,15 @@
 import "./ColorBox.css";
 export default function ColorBox(props) {
+  const { name, background } = props;
   return (
-    <div style={{ backgroundColor: props.background }} className="ColorBox">
-      <span>{props.name}</span>
-      <span>MORE</span>
+    <div style={{ background }} className="ColorBox">
+      <div className="copy-containter">
+        <div className="box-content">
+          <span>{name}</span>
+        </div>
+        <button className="copy-button">Copy</button>
+      </div>
+      <span className="see-more">More</span>
     </div>
   );
 }
