@@ -1,4 +1,4 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function NavBar() {
   return (
@@ -6,7 +6,8 @@ export default function NavBar() {
       <NavLink className="navbar-brand" exact to="/home">
         React Colors
       </NavLink>
-      <Link to="/home">Home</Link>
+      <NavLink to="/home">Home</NavLink>
+      <NavLink to="/palette">Palette</NavLink>
     </div>
   );
 }
