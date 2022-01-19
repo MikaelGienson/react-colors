@@ -80,7 +80,7 @@
   bottom: 0;
   display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
   flex-direction: column;
   position: fixed;
   transform: scale(0.1);
@@ -91,10 +91,10 @@
 
 .copy-msg.show {
   opacity: 1;
-  transform: scale(50);
+  transform: scale(1);
   z-index: 25;
   transition: all 0.4s ease-in-out;
-  transition-delay: 0.3s; 
+  transition-delay: 0.3s;
 }
 
 .copy-msg h1 {

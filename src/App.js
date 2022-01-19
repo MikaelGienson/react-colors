@@ -3,10 +3,11 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Palette from "./Palette";
 import Home from "./Home";
 import NavBar from "./NavBar";
-import "bootstrap";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import { generatePalette } from "./colorhelpers";
+import seedColors from "./seedColors";
 
 export default function App() {
+  console.log(generatePalette(seedColors[4]));
   return (
     <div className="App">
       <div>
