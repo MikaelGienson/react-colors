@@ -3,9 +3,8 @@ import ColorBox from "./ColorBox";
 
 export default function Palette(props) {
   const palette = props.palette;
-  console.log(palette)
-  const colorBoxes = palette.colors.map((color) => (
-    <ColorBox background={color.color} name={color.name} />
+  const colorBoxes = palette.colors['300'].map((color) => (
+    <ColorBox background={color.hex} name={color.name} />
   ));
   return (
     <div className="Palette">
