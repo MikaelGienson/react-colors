@@ -1,9 +1,9 @@
 import "./Palette.css";
-import seedColors from "./seedColors";
 import ColorBox from "./ColorBox";
 
-export default function PalettePage() {
-  const palette = { ...seedColors[2] };
+export default function Palette(props) {
+  const palette = props.palette;
+  console.log(palette)
   const colorBoxes = palette.colors.map((color) => (
     <ColorBox background={color.color} name={color.name} />
   ));
