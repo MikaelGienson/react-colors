@@ -4,7 +4,8 @@ import Palette from "./Palette";
 import Home from "./Home";
 import NavBar from "./NavBar";
 import { generatePalette } from "./colorhelpers";
-import seedColors from './seedColors'
+import seedColors from "./seedColors";
+import SliderX from "./Slider";
 
 export default function App() {
   return (
@@ -16,7 +17,11 @@ export default function App() {
         <Route path="*" element={<Home />} />
         <Route path="/" element={<Navigate replace to="/home" />} />
         <Route exact path="/home/" element={<Home />} />
-        <Route exact path="/palette/" element={<Palette palette={generatePalette(seedColors[4])}/>} />
+        <Route
+          exact
+          path="/palette/"
+          element={<Palette palette={generatePalette(seedColors[4])} />}
+        />
       </Routes>
     </div>
   );
