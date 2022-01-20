@@ -4,6 +4,7 @@ import Palette from "./Palette";
 import Home from "./Home";
 import NavBar from "./NavBar";
 import { generatePalette } from "./colorhelpers";
+import seedColors from './seedColors'
 
 export default function App() {
   return (
