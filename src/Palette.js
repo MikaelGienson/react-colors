@@ -7,27 +7,42 @@ export default class Palette extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 300
+      value: 300,
+      model: "rgb"
     };
     this.onSliderChange = this.onSliderChange.bind(this);
+    this.onModelChange = this.onModelChange.bind(this);
   }
 
   onSliderChange(value) {
     this.setState({
-      value
+      value: value
+    });
+  }
+
+  onModelChange(model) {
+    this.setState({
+      model: model
     });
   }
 
   render() {
-    const { value } = this.state;
+    const { value, model } = this.state;
     const { palette } = this.props;
+
     const colorBoxes = palette.colors[value].map((color) => (
-      <ColorBox background={color.hex} name={color.name} />
+      <ColorBox background={color[model]} name={color.name} />
     ));
 
     return (
       <div className="Palette">
-        <Navbar value={this.state.value} onSliderChange={this.onSliderChange} />
+        <Navbar
+          palette={palette}
+          color={this.state.model}
+          value={this.state.value}
+          onSliderChange={this.onSliderChange}
+          onModelChange={this.onModelChange}
+        />
         <div className="Palette-colors">{colorBoxes}</div>
       </div>
     );
