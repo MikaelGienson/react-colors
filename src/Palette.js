@@ -7,7 +7,7 @@ export default class Palette extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 100
+      value: 300
     };
     this.onSliderChange = this.onSliderChange.bind(this);
   }
