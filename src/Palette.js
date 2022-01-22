@@ -42,6 +42,7 @@ export default class Palette extends Component {
           value={this.state.value}
           onSliderChange={this.onSliderChange}
           onModelChange={this.onModelChange}
+          model={this.state.model}
         />
         <div className="Palette-colors">{colorBoxes}</div>
       </div>
