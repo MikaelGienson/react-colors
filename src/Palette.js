@@ -1,55 +1,56 @@
 import "./Palette.css";
 import ColorBox from "./ColorBox";
-import { Component } from "react";
+import { useState } from "react";
+import { useParams } from "react-router";
+import Slider from "rc-slider";
 import Navbar from "./Navbar";
 
-export default class Palette extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 300,
-      model: "rgb"
-    };
-    this.onSliderChange = this.onSliderChange.bind(this);
-    this.onModelChange = this.onModelChange.bind(this);
+export default function Palette({ palette }, props) {
+  const [level, setlevel] = useState(100);
+  const [model, setModel] = useState("hex");
+
+  const { id } = useParams();
+
+  function onSliderChange(level) {
+    setlevel(level);
   }
 
-  onSliderChange(value) {
-    this.setState({
-      value: value
-    });
+  function onModelChange(model) {
+    setModel(model);
+    props.pass(id);
   }
 
-  onModelChange(model) {
-    this.setState({
-      model: model
-    });
-  }
+  const colorBoxes = palette.colors[level].map((color) => (
+    <ColorBox background={color[model]} name={color.name} />
+  ));
 
-  render() {
-    const { value, model } = this.state;
-    const { palette } = this.props;
-
-    const colorBoxes = palette.colors[value].map((color) => (
-      <ColorBox background={color[model]} name={color.name} />
-    ));
-
-    return (
-      <div className="Palette">
-        <Navbar
-          palette={palette}
-          color={this.state.model}
-          value={this.state.value}
-          onSliderChange={this.onSliderChange}
-          onModelChange={this.onModelChange}
-          model={this.state.model}
-        />
-        <div className="Palette-colors">{colorBoxes}</div>
-        <footer className="Palette-footer">
-          {palette.paletteName}
-          <span className="emoji">{palette.emoji}</span>
-        </footer>
+  return (
+    <div className="Palette">
+      <div className="slider-container">
+        <span>Level: {level}</span>
+        <div className="slider">
+          <Slider
+            defaultValue={level}
+            min={100}
+            max={900}
+            step={100}
+            onChange={onSliderChange}
+          />
+        </div>
       </div>
-    );
-  }
+      <Navbar
+        palette={palette}
+        color={model}
+        level={level}
+        onSliderChange={onSliderChange}
+        onModelChange={onModelChange}
+        model={model}
+      />
+      <div className="Palette-colors">{colorBoxes}</div>
+      <footer className="Palette-footer">
+        {palette.paletteName}
+        <span className="emoji">{palette.emoji}</span>
+      </footer>
+    </div>
+  );
 }
