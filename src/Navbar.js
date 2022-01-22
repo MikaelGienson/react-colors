@@ -7,6 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import "rc-slider/assets/index.css";
 import Slider from "rc-slider";
 import "./Navbar.css";
+import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -50,7 +51,7 @@ export default class Navbar extends Component {
         {console.log(pal)}
 
         <div className="logo">
-          <a href="#">react color picker</a>
+          <Link to="/home/">react color picker</Link>
         </div>
         <div className="slider-container">
           <span>Level: {this.props.value}</span>

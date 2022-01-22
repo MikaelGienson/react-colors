@@ -5,12 +5,13 @@ import Home from "./Home";
 import { generatePalette } from "./colorhelpers";
 import seedColors from "./seedColors";
 
-export default function App() {
+export default function App(props) {
   return (
     <div className="App">
       <Routes>
         <Route path="*" element={<Home />} />
         <Route path="/" element={<Navigate replace to="/home" />} />
+        <Route path="/palette/:id" element={<Palette id={props.id} />} />
         <Route exact path="/home/" element={<Home />} />
         <Route
           exact
