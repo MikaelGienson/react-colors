@@ -1,7 +1,7 @@
 import "./styles.css";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useParams } from "react-router-dom";
 import Palette from "./Palette";
-import Home from "./Home";
+import PaletteList from "./PaletteList";
 import seedColors from "./seedColors";
 import { useMatch } from "react-router-dom";
 import { generatePalette } from "./colorhelpers";
@@ -13,19 +13,24 @@ export default function App() {
     });
   }
 
-  let {
-    params: { id }
-  } = useMatch("/palette/:id");
+  let idx = useMatch("/palette/:id");
 
-  const palette = generatePalette(findPalette(id)[0]);
+  const palette =
+    idx === null
+      ? generatePalette(seedColors[0])
+      : generatePalette(findPalette(idx.params.id)[0]);
 
   return (
     <div className="App">
       <Routes>
-        {/* <Route path="*" element={<Home palette={palette}  />} /> */}
-        <Route path="/" element={<Navigate replace to="/home" />} />
+        <Route path="*" element={<PaletteList palettes={seedColors} />} />
+        <Route path="/" element={<Navigate replace to="/palettelist" />} />
         <Route path="/palette/:id" element={<Palette palette={palette} />} />
-        <Route exact path="/home/" element={<Home />} />
+        <Route
+          exact
+          path="/palettelist/"
+          element={<PaletteList palettes={seedColors} />}
+        />
       </Routes>
     </div>
   );
