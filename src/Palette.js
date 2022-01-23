@@ -1,15 +1,12 @@
 import "./Palette.css";
 import ColorBox from "./ColorBox";
 import { useState } from "react";
-import { useParams } from "react-router";
 import Slider from "rc-slider";
 import Navbar from "./Navbar";
 
-export default function Palette({ palette }, props) {
+export default function Palette({ palette }, match) {
   const [level, setlevel] = useState(100);
   const [model, setModel] = useState("hex");
-
-  const { id } = useParams();
 
   function onSliderChange(level) {
     setlevel(level);
@@ -17,7 +14,6 @@ export default function Palette({ palette }, props) {
 
   function onModelChange(model) {
     setModel(model);
-    props.pass(id);
   }
 
   const colorBoxes = palette.colors[level].map((color) => (
