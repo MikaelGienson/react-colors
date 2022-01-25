@@ -31,6 +31,11 @@ export default function App() {
           path="/palettelist/"
           element={<PaletteList palettes={seedColors} />}
         />
+        <Route
+          exact
+          path="/palette/:paletteId/:colorId"
+          element={<h1>Single Color Page</h1>}
+        />
       </Routes>
     </div>
   );

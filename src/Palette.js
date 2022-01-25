@@ -5,7 +5,7 @@ import Slider from "rc-slider";
 import Navbar from "./Navbar";
 
 export default function Palette({ palette }, match) {
-  const [level, setlevel] = useState(100);
+  const [level, setlevel] = useState(400);
   const [model, setModel] = useState("hex");
 
   function onSliderChange(level) {
