@@ -4,7 +4,7 @@ import { useState } from "react";
 import Slider from "rc-slider";
 import Navbar from "./Navbar";
 
-export default function Palette({ palette }, match) {
+export default function Palette({ palette }) {
   const [level, setlevel] = useState(400);
   const [model, setModel] = useState("hex");
 
@@ -17,11 +17,18 @@ export default function Palette({ palette }, match) {
   }
 
   const colorBoxes = palette.colors[level].map((color) => (
-    <ColorBox background={color[model]} name={color.name} />
+    <ColorBox
+      background={color[model]}
+      name={color.name}
+      key={color.id}
+      id={color.id}
+      paletteId={palette.id}
+    />
   ));
 
   return (
     <div className="Palette">
+      {console.log(palette)}
       <div className="slider-container">
         <span>Level: {level}</span>
         <div className="slider">
