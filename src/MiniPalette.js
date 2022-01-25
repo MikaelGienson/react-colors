@@ -71,7 +71,8 @@ export default function MiniPalette(props) {
     <div className={classes.root} onClick={this.handleClick}>
       <div className={classes.colors}>{miniColorBoxes}</div>
       <h5 className={classes.title}>
-        {paletteName} <span className={classes.emoji}>{emoji}</span>
+        {paletteName}
+        <span className={classes.emoji}>{emoji}</span>
       </h5>
     </div>
   );
