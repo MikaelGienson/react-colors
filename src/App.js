@@ -14,12 +14,33 @@ export default function App() {
     });
   }
 
-  let idx = useMatch("/palette/:id");
+  const paletteMatch = useMatch("/palette/:id");
+  const singlePaletteMatch = useMatch("/palette/:paletteId/:colorId");
 
-  const palette =
-    idx === null
-      ? generatePalette(seedColors[0])
-      : generatePalette(findPalette(idx.params.id)[0]);
+  let palette = null;
+  if (paletteMatch) {
+    seedColors.some((element) => {
+      if (element.id === paletteMatch.params.id) {
+        palette = generatePalette(findPalette(paletteMatch.params.id)[0]);
+        return palette;
+      } else {
+        palette = seedColors[0];
+        return palette;
+      }
+    });
+  } else {
+    seedColors.some((element) => {
+      if (element.id === singlePaletteMatch.params.paletteId) {
+        palette = generatePalette(
+          findPalette(singlePaletteMatch.params.paletteId)[0]
+        );
+        return palette;
+      } else {
+        palette = seedColors[0];
+        return palette;
+      }
+    });
+  }
 
   return (
     <div className="App">
@@ -29,13 +50,14 @@ export default function App() {
         <Route path="/palette/:id" element={<Palette palette={palette} />} />
         <Route
           exact
-          path="/palettelist/"
-          element={<PaletteList palettes={seedColors} />}
+          path="/palette/:paletteId/:colorId"
+          element={<SingleColorPalette palette={palette} />}
         />
+
         <Route
           exact
-          path="/palette/:paletteId/:colorId"
-          element={<SingleColorPalette />}
+          path="/palettelist/"
+          element={<PaletteList palettes={seedColors} />}
         />
       </Routes>
     </div>

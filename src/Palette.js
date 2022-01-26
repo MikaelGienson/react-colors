@@ -28,7 +28,7 @@ export default function Palette({ palette }) {
 
   return (
     <div className="Palette">
-      {console.log(palette)}
+      {/* {console.log(palette)} */}
       <div className="slider-container">
         <span>Level: {level}</span>
         <div className="slider">
