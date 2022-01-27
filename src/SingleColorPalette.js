@@ -1,7 +1,14 @@
 import ColorBox from "./ColorBox";
+import { useState } from "react";
+import Navbar from "./Navbar";
+import PaletteFooter from "./PaletteFooter";
 
 export default function SingleColorPalette(props) {
-  let shades = gatherShades(props.palette, props.colorId);
+  const [model, setModel] = useState("hex");
+
+  const { palette, colorId } = props;
+
+  let shades = gatherShades(palette, colorId);
 
   function gatherShades(palette, colorToFilterBy) {
     let shades = [];
@@ -15,19 +22,24 @@ export default function SingleColorPalette(props) {
     return shades.slice(1);
   }
 
+  function onModelChange(model) {
+    setModel(model);
+  }
+
   const colorBoxes = shades.map((color) => (
     <ColorBox
       key={color.id}
       name={color.name}
-      background={color.hex}
+      background={color[model]}
       showLink={false}
     />
   ));
 
   return (
     <div className="Palette">
-      <h1>Single Color Palette</h1>
+      <Navbar onModelChange={onModelChange} model={model} />
       <div className="Palette-colors">{colorBoxes}</div>
+      <PaletteFooter paletteName={palette.paletteName} emoji={palette.emoji} />
     </div>
   );
 }

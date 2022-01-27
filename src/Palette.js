@@ -3,6 +3,7 @@ import ColorBox from "./ColorBox";
 import { useState } from "react";
 import Slider from "rc-slider";
 import Navbar from "./Navbar";
+import PaletteFooter from "./PaletteFooter";
 
 export default function Palette({ palette }) {
   const [level, setlevel] = useState(400);
@@ -50,10 +51,7 @@ export default function Palette({ palette }) {
         model={model}
       />
       <div className="Palette-colors">{colorBoxes}</div>
-      <footer className="Palette-footer">
-        {palette.paletteName}
-        <span className="emoji">{palette.emoji}</span>
-      </footer>
+      <PaletteFooter paletteName={palette.paletteName} emoji={palette.emoji} />
     </div>
   );
 }
