@@ -23,12 +23,12 @@ export default function Palette({ palette }) {
       key={color.id}
       id={color.id}
       paletteId={palette.id}
+      showLink={true}
     />
   ));
 
   return (
     <div className="Palette">
-      {/* {console.log(palette)} */}
       <div className="slider-container">
         <span>Level: {level}</span>
         <div className="slider">

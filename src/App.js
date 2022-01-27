@@ -4,7 +4,7 @@ import Palette from "./Palette";
 import PaletteList from "./PaletteList";
 import SingleColorPalette from "./SingleColorPalette";
 import seedColors from "./seedColors";
-import { useMatch, useNavigate, useEffect } from "react-router-dom";
+import React, { useMatch, useNavigate } from "react-router-dom";
 import { generatePalette } from "./colorhelpers";
 
 export default function App() {
@@ -30,6 +30,7 @@ export default function App() {
           palette = generatePalette(findPalette(paletteMatch.params.id)[0]);
           return palette;
         } else {
+          paletteMatch.params.id = "";
           navigate("/palettelist", { replace: true });
         }
       });
@@ -56,7 +57,14 @@ export default function App() {
         <Route
           exact
           path="/palette/:paletteId/:colorId"
-          element={<SingleColorPalette palette={palette} />}
+          element={
+            <SingleColorPalette
+              palette={palette}
+              colorId={
+                singlePaletteMatch ? singlePaletteMatch.params.colorId : ""
+              }
+            />
+          }
         />
 
         <Route
