@@ -4,7 +4,7 @@ import Palette from "./Palette";
 import PaletteList from "./PaletteList";
 import SingleColorPalette from "./SingleColorPalette";
 import seedColors from "./seedColors";
-import { useMatch } from "react-router-dom";
+import { useMatch, useNavigate, useEffect } from "react-router-dom";
 import { generatePalette } from "./colorhelpers";
 
 export default function App() {
@@ -18,28 +18,33 @@ export default function App() {
   const singlePaletteMatch = useMatch("/palette/:paletteId/:colorId");
 
   let palette = null;
-  if (paletteMatch) {
-    seedColors.some((element) => {
-      if (element.id === paletteMatch.params.id) {
-        palette = generatePalette(findPalette(paletteMatch.params.id)[0]);
-        return palette;
-      } else {
-        palette = seedColors[0];
-        return palette;
-      }
-    });
+  let navigate = useNavigate();
+
+  if (paletteMatch === null && singlePaletteMatch === null) {
+    navigate("/palettelist");
+    console.log(navigate);
   } else {
-    seedColors.some((element) => {
-      if (element.id === singlePaletteMatch.params.paletteId) {
-        palette = generatePalette(
-          findPalette(singlePaletteMatch.params.paletteId)[0]
-        );
-        return palette;
-      } else {
-        palette = seedColors[0];
-        return palette;
-      }
-    });
+    if (paletteMatch) {
+      seedColors.some((element) => {
+        if (element.id === paletteMatch.params.id) {
+          palette = generatePalette(findPalette(paletteMatch.params.id)[0]);
+          return palette;
+        } else {
+          navigate("/palettelist", { replace: true });
+        }
+      });
+    } else {
+      seedColors.some((element) => {
+        if (element.id === singlePaletteMatch.params.paletteId) {
+          palette = generatePalette(
+            findPalette(singlePaletteMatch.params.paletteId)[0]
+          );
+          return palette;
+        } else {
+          navigate("/palettelist", { replace: true });
+        }
+      });
+    }
   }
 
   return (
