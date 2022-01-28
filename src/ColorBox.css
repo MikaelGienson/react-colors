@@ -44,6 +44,15 @@
   transition: 0.5s;
 }
 
+.light-text {
+  color: white;
+}
+
+.ColorBox .dark-text {
+  color: black;
+  opacity: 80%;
+}
+
 .box-content {
   position: absolute;
   width: 100%;

@@ -17,7 +17,9 @@ export default function App() {
   const paletteMatch = useMatch("/palette/:id");
   const singlePaletteMatch = useMatch("/palette/:paletteId/:colorId");
 
-  let palette = null;
+  let palette = "";
+  console.log(paletteMatch);
+  console.log(singlePaletteMatch);
   let navigate = useNavigate();
 
   if (paletteMatch === null && singlePaletteMatch === null) {
@@ -30,8 +32,8 @@ export default function App() {
           palette = generatePalette(findPalette(paletteMatch.params.id)[0]);
           return palette;
         } else {
-          paletteMatch.params.id = "";
           navigate("/palettelist", { replace: true });
+          return (paletteMatch.params.id = "");
         }
       });
     } else {
@@ -43,13 +45,14 @@ export default function App() {
           return palette;
         } else {
           navigate("/palettelist", { replace: true });
+          return (singlePaletteMatch.params.paletteId = "");
         }
       });
     }
   }
-
   return (
     <div className="App">
+      {console.log(palette)}
       <Routes>
         <Route path="*" element={<PaletteList palettes={seedColors} />} />
         <Route path="/" element={<Navigate replace to="/palettelist" />} />
